@@ -3,17 +3,15 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using XDelivered.StarterKits.NgCoreEF.Data;
 
-namespace XDelivered.StarterKits.NgCoreEF.Data.Migrations
+namespace XDelivered.Starter.Core.EF.Website.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20181030100305_userMetaData")]
-    partial class userMetaData
+    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -131,7 +129,22 @@ namespace XDelivered.StarterKits.NgCoreEF.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("Toptal.RestaurantReview.Website.Data.User", b =>
+            modelBuilder.Entity("XDelivered.Starter.Core.EF.Website.Data.Entity", b =>
+                {
+                    b.Property<int>("Key")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("Created");
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Key");
+
+                    b.ToTable("Entities");
+                });
+
+            modelBuilder.Entity("XDelivered.StarterKits.NgCoreEF.Data.User", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
@@ -142,6 +155,8 @@ namespace XDelivered.StarterKits.NgCoreEF.Data.Migrations
                         .IsConcurrencyToken();
 
                     b.Property<DateTime>("Created");
+
+                    b.Property<bool>("Deleted");
 
                     b.Property<string>("Email")
                         .HasMaxLength(256);
@@ -196,7 +211,7 @@ namespace XDelivered.StarterKits.NgCoreEF.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("Toptal.RestaurantReview.Website.Data.User")
+                    b.HasOne("XDelivered.StarterKits.NgCoreEF.Data.User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -204,7 +219,7 @@ namespace XDelivered.StarterKits.NgCoreEF.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("Toptal.RestaurantReview.Website.Data.User")
+                    b.HasOne("XDelivered.StarterKits.NgCoreEF.Data.User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -217,7 +232,7 @@ namespace XDelivered.StarterKits.NgCoreEF.Data.Migrations
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("Toptal.RestaurantReview.Website.Data.User")
+                    b.HasOne("XDelivered.StarterKits.NgCoreEF.Data.User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -225,7 +240,7 @@ namespace XDelivered.StarterKits.NgCoreEF.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("Toptal.RestaurantReview.Website.Data.User")
+                    b.HasOne("XDelivered.StarterKits.NgCoreEF.Data.User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);

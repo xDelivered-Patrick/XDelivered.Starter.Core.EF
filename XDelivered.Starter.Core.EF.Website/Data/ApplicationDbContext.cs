@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using XDelivered.Starter.Core.EF.Website.Data;
 
 namespace XDelivered.StarterKits.NgCoreEF.Data
 {
@@ -9,6 +10,7 @@ namespace XDelivered.StarterKits.NgCoreEF.Data
             : base(options)
         {
         }
-        
+
+        public DbSet<Entity> Entities { get; set; }
     }
 }

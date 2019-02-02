@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Pages.Account.Manage.Internal;
+using XDelivered.Starter.Core.EF.Website.Data;
 using XDelivered.StarterKits.NgCoreEF.Helpers;
 
 namespace XDelivered.StarterKits.NgCoreEF.Data
@@ -30,7 +31,8 @@ namespace XDelivered.StarterKits.NgCoreEF.Data
 
         private static async Task SeedData(ApplicationDbContext dbContext)
         {
-            
+            dbContext.Entities.Add(new Entity() {Name = "Entity1"});
+            dbContext.Entities.Add(new Entity() { Name = "Entity2" });
 
             await dbContext.SaveChangesAsync();
         }

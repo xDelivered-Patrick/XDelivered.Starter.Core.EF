@@ -17,6 +17,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.PlatformAbstractions;
 using Microsoft.IdentityModel.Tokens;
 using Swashbuckle.AspNetCore.Swagger;
+using XDelivered.Starter.Core.EF.Website.Services.EntitiesService;
 using XDelivered.StarterKits.NgCoreEF.Data;
 using XDelivered.StarterKits.NgCoreEF.Exceptions;
 using XDelivered.StarterKits.NgCoreEF.Helpers;
@@ -54,7 +55,7 @@ namespace XDelivered.StarterKits.NgCoreEF
             services.AddOptions();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new Info {Version = "v1", Title = "Restaurant Review API",});
+                c.SwaggerDoc("v1", new Info {Version = "v1", Title = "xDelivered API",});
 
                 var basePath = PlatformServices.Default.Application.ApplicationBasePath;
                 var xmlPath = Path.Combine(basePath, "SwaggerProject.xml");
@@ -79,6 +80,7 @@ namespace XDelivered.StarterKits.NgCoreEF
 
             //DI
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IEntitiesService, EntitiesService>();
         }
 
         private void ConfigureSettings(IServiceCollection services, IHostingEnvironment env)
@@ -186,7 +188,7 @@ namespace XDelivered.StarterKits.NgCoreEF
 
             app.UseSwagger();
 
-            app.UseSwaggerUI(c => { c.SwaggerEndpoint("v1/swagger.json", "Restaurant Review API"); });
+            app.UseSwaggerUI(c => { c.SwaggerEndpoint("v1/swagger.json", "XDelivered API"); });
 
             app.UseMvc(routes =>
             {
